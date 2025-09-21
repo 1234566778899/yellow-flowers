@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz 21 Señorita Ingeniera 💛</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite alternate;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);
+            margin-bottom: 1rem;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #333;
+            font-size: 3rem;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            animation: bounceIn 1s ease-out 1s both;
+        }
+
+        .garden {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 2rem auto;
+        }
+
+        .flower-main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        .flower-secondary {
+            position: absolute;
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        .flower-secondary:nth-child(2) {
+            left: 10%;
+            top: 20%;
+            transform: scale(0.7) rotate(15deg);
+            animation-delay: -1s;
+        }
+
+        .flower-secondary:nth-child(3) {
+            right: 10%;
+            top: 20%;
+            transform: scale(0.6) rotate(-20deg);
+            animation-delay: -2s;
+        }
+
+        .flower-secondary:nth-child(4) {
+            left: 20%;
+            bottom: 10%;
+            transform: scale(0.5) rotate(30deg);
+            animation-delay: -0.5s;
+        }
+
+        .flower-secondary:nth-child(5) {
+            right: 20%;
+            bottom: 10%;
+            transform: scale(0.6) rotate(-10deg);
+            animation-delay: -1.5s;
+        }
+
+        .flower {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #ffd700 0%, #ffed4a 50%, #fff59d 100%);
+            border-radius: 50% 50% 50% 0;
+            transform-origin: 100% 100%;
+            animation: petalBloom 2s ease-out forwards;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .petal::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 50% 50% 50% 0;
+        }
+
+        .petal:nth-child(1) {
+            top: 15px;
+            left: 65px;
+            transform: rotate(-45deg) scale(0);
+            animation-delay: 0.3s;
+        }
+
+        .petal:nth-child(2) {
+            top: 35px;
+            left: 115px;
+            transform: rotate(0deg) scale(0);
+            animation-delay: 0.6s;
+        }
+
+        .petal:nth-child(3) {
+            top: 75px;
+            left: 135px;
+            transform: rotate(45deg) scale(0);
+            animation-delay: 0.9s;
+        }
+
+        .petal:nth-child(4) {
+            top: 115px;
+            left: 115px;
+            transform: rotate(90deg) scale(0);
+            animation-delay: 1.2s;
+        }
+
+        .petal:nth-child(5) {
+            top: 135px;
+            left: 65px;
+            transform: rotate(135deg) scale(0);
+            animation-delay: 1.5s;
+        }
+
+        .petal:nth-child(6) {
+            top: 115px;
+            left: 15px;
+            transform: rotate(180deg) scale(0);
+            animation-delay: 1.8s;
+        }
+
+        .petal:nth-child(7) {
+            top: 75px;
+            left: -5px;
+            transform: rotate(225deg) scale(0);
+            animation-delay: 2.1s;
+        }
+
+        .petal:nth-child(8) {
+            top: 35px;
+            left: 15px;
+            transform: rotate(270deg) scale(0);
+            animation-delay: 2.4s;
+        }
+
+        .center {
+            position: absolute;
+            top: 65px;
+            left: 65px;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #8b4513 30%, #daa520 100%);
+            border-radius: 50%;
+            animation: centerBloom 1.5s ease-out 2.7s both;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.3), 0 0 20px rgba(218, 165, 32, 0.5);
+        }
+
+        .center::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #654321, #8b4513);
+            border-radius: 50%;
+        }
+
+        .center::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            box-shadow: 
+                12px 5px 0 -2px rgba(255, 255, 255, 0.4),
+                5px 12px 0 -3px rgba(255, 255, 255, 0.3),
+                20px 15px 0 -4px rgba(255, 255, 255, 0.2);
+        }
+
+        .stem {
+            position: absolute;
+            bottom: -120px;
+            left: 95px;
+            width: 12px;
+            height: 120px;
+            background: linear-gradient(to bottom, #228b22 0%, #32cd32 50%, #90ee90 100%);
+            border-radius: 6px;
+            animation: stemGrow 1.5s ease-out 3s both;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+
+        .leaf {
+            position: absolute;
+            width: 35px;
+            height: 25px;
+            background: linear-gradient(45deg, #228b22, #32cd32, #90ee90);
+            border-radius: 0 100% 0 100%;
+            bottom: 40px;
+            left: -18px;
+            animation: leafGrow 0.8s ease-out 3.5s both;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .leaf:nth-child(2) {
+            right: -18px;
+            left: auto;
+            transform: scaleX(-1);
+            animation-delay: 3.8s;
+            bottom: 60px;
+        }
+
+        .leaf:nth-child(3) {
+            left: -15px;
+            bottom: 20px;
+            width: 30px;
+            height: 20px;
+            animation-delay: 4.1s;
+        }
+
+        .engineering-symbol {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            animation: symbolSpin 3s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .engineering-symbol::before {
+            content: '⚙️';
+        }
+
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+
+        .particle.heart {
+            color: #ff6b9d;
+            font-size: 1.5rem;
+        }
+
+        .particle.star {
+            background: #ffd700;
+            width: 8px;
+            height: 8px;
+        }
+
+        .particle.gear {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .message-final {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease-out 5s both;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .celebration-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-top: 1rem;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6); }
+            100% { text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 60px rgba(255, 215, 0, 0.8); }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes petalBloom {
+            0% { transform: rotate(var(--rotation)) scale(0); }
+            50% { transform: rotate(var(--rotation)) scale(1.3); }
+            100% { transform: rotate(var(--rotation)) scale(1); }
+        }
+
+        @keyframes centerBloom {
+            0% { transform: scale(0) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        @keyframes stemGrow {
+            from { height: 0; }
+            to { height: 120px; }
+        }
+
+        @keyframes leafGrow {
+            0% { transform: scale(0) rotate(-90deg); }
+            50% { transform: scale(1.2) rotate(0deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
+            33% { transform: translate(-50%, -50%) translateY(-15px) rotate(2deg); }
+            66% { transform: translate(-50%, -50%) translateY(-5px) rotate(-1deg); }
+        }
+
+        @keyframes symbolSpin {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .click-hint {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-top: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.5rem; }
+            .subtitle { font-size: 1.5rem; }
+            .age-badge { font-size: 2rem; padding: 10px 20px; }
+            .garden { height: 300px; }
+            .flower { width: 150px; height: 150px; }
+            .message-final { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="particle-container"></div>
+    
+    <div class="container">
+        <h1 class="main-title">Feliz 21</h1>
+        <p class="subtitle">Señorita Ingeniera 🎓</p>
+        
+        <div class="garden">
+            <div class="flower-main">
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                    <div class="engineering-symbol"></div>
+                </div>
+            </div>
+            
+            <div class="flower-secondary">
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flower-secondary">
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flower-secondary">
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flower-secondary">
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear estrellas de fondo
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = (1 + Math.random() * 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Crear partículas flotantes
+        function createParticle() {
+            const container = document.querySelector('.particle-container');
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const types = ['heart', 'star', 'gear'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            particle.classList.add(type);
+            
+            if (type === 'heart') {
+                particle.innerHTML = '💖';
+            } else if (type === 'gear') {
+                particle.innerHTML = '⚙️';
+            }
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            container.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+
+        // Crear explosión de partículas al hacer clic
+        function createExplosion(x, y) {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '1000';
+                
+                const emojis = ['🌻', '⭐', '💛', '🎉', '✨', '🌟', '💫', '🎊'];
+                particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.fontSize = '1.5rem';
+                
+                const angle = (Math.PI * 2 * i) / 20;
+                const velocity = 100 + Math.random() * 100;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                particle.style.transition = 'all 1s ease-out';
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.style.transform = `translate(${vx}px, ${vy}px) scale(0)`;
+                    particle.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('click', function(e) {
+            createExplosion(e.clientX, e.clientY);
+            
+            // Crear partículas extra
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createParticle, i * 100);
+            }
+        });
+
+        // Cambiar colores de las flores aleatoriamente
+        function changeFlowerColors() {
+            const petals = document.querySelectorAll('.petal');
+            const colors = [
+                'linear-gradient(45deg, #ffd700, #ffed4a, #fff59d)',
+                'linear-gradient(45deg, #ff6b9d, #feca57, #ff9ff3)',
+                'linear-gradient(45deg, #48dbfb, #0abde3, #74b9ff)',
+                'linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3)'
+            ];
+            
+            petals.forEach(petal => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.background = randomColor;
+            });
+        }
+
+        // Inicialización
+        createStars();
+        
+        // Crear partículas periódicamente
+        setInterval(createParticle, 800);
+        
+        // Cambiar colores ocasionalmente
+        setInterval(changeFlowerColors, 5000);
+        
+        // Mensaje especial al pasar 10 segundos
+        setTimeout(() => {
+            const specialMessage = document.createElement('div');
+            specialMessage.style.position = 'fixed';
+            specialMessage.style.top = '50%';
+            specialMessage.style.left = '50%';
+            specialMessage.style.transform = 'translate(-50%, -50%)';
+            specialMessage.style.background = 'rgba(255, 215, 0, 0.9)';
+            specialMessage.style.padding = '30px';
+            specialMessage.style.borderRadius = '20px';
+            specialMessage.style.color = '#333';
+            specialMessage.style.fontSize = '1.5rem';
+            specialMessage.style.fontFamily = 'Dancing Script, cursive';
+            specialMessage.style.textAlign = 'center';
+            specialMessage.style.zIndex = '1000';
+            specialMessage.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            specialMessage.innerHTML = `
+                <div>🎓 ¡Que construyas un futuro increíble! 🎓</div>
+                <div style="font-size: 1rem; margin-top: 10px;">Haz clic para continuar</div>
+            `;
+            
+            document.body.appendChild(specialMessage);
+            
+            specialMessage.addEventListener('click', () => {
+                specialMessage.style.transition = 'all 0.5s ease-out';
+                specialMessage.style.opacity = '0';
+                specialMessage.style.transform = 'translate(-50%, -50%) scale(0)';
+                setTimeout(() => specialMessage.remove(), 500);
+            });
+            
+            setTimeout(() => {
+                if (specialMessage.parentNode) {
+                    specialMessage.style.transition = 'all 0.5s ease-out';
+                    specialMessage.style.opacity = '0';
+                    setTimeout(() => specialMessage.remove(), 500);
+                }
+            }, 5000);
+        }, 10000);
+    </script>
+</body>
+</html>
