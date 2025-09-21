@@ -709,43 +709,6 @@
         setInterval(changeFlowerColors, 5000);
         
         // Mensaje especial al pasar 10 segundos
-        setTimeout(() => {
-            const specialMessage = document.createElement('div');
-            specialMessage.style.position = 'fixed';
-            specialMessage.style.top = '50%';
-            specialMessage.style.left = '50%';
-            specialMessage.style.transform = 'translate(-50%, -50%)';
-            specialMessage.style.background = 'rgba(255, 215, 0, 0.9)';
-            specialMessage.style.padding = '30px';
-            specialMessage.style.borderRadius = '20px';
-            specialMessage.style.color = '#333';
-            specialMessage.style.fontSize = '1.5rem';
-            specialMessage.style.fontFamily = 'Dancing Script, cursive';
-            specialMessage.style.textAlign = 'center';
-            specialMessage.style.zIndex = '1000';
-            specialMessage.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
-            specialMessage.innerHTML = `
-                <div>🎓 ¡Que construyas un futuro increíble! 🎓</div>
-                <div style="font-size: 1rem; margin-top: 10px;">Haz clic para continuar</div>
-            `;
-            
-            document.body.appendChild(specialMessage);
-            
-            specialMessage.addEventListener('click', () => {
-                specialMessage.style.transition = 'all 0.5s ease-out';
-                specialMessage.style.opacity = '0';
-                specialMessage.style.transform = 'translate(-50%, -50%) scale(0)';
-                setTimeout(() => specialMessage.remove(), 500);
-            });
-            
-            setTimeout(() => {
-                if (specialMessage.parentNode) {
-                    specialMessage.style.transition = 'all 0.5s ease-out';
-                    specialMessage.style.opacity = '0';
-                    setTimeout(() => specialMessage.remove(), 500);
-                }
-            }, 5000);
-        }, 10000);
     </script>
 </body>
 </html>
